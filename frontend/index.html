@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas Fullstack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <h1>🚀 TaskManager Pro</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="form-section">
+            <h2>Nueva Tarea</h2>
+            <form id="taskForm">
+                <div class="input-group">
+                    <label for="titulo">Título de la tarea</label>
+                    <input type="text" id="titulo" placeholder="Ej: Aprender React" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="tecnologia">Tecnología</label>
+                    <input type="text" id="tecnologia" placeholder="Ej: JavaScript">
+                    </div>
+
+                <button type="submit" class="btn-primary">💾 Guardar Tarea</button>
+            </form>
+        </section>
+
+        <section class="list-section">
+            <h2>Mis Tareas</h2>
+            <div id="tasksContainer" class="grid-container">
+                <p class="loading">Cargando tareas...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
