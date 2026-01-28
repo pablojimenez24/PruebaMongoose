@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // PEGA AQUÍ TU ENLACE COMPLETO (Recuerda cambiar <password> por tu contraseña real)
-const dbConnection = 'mongodb+srv://pablo:ggI8Va36RIXMkri7@misbd.nf6po2t.mongodb.net/PruebaMongoose?appName=MisBD';
+const dbConnection = process.env.MONGO_URI;
 
 const connectDB = async () => {
     try {
