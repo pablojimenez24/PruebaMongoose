@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./config/database');
 
 const app = express();
@@ -7,7 +8,12 @@ const app = express();
 connectDB();
 
 // 2. Middleware
+app.use(cors({
+    origin: true,  // Permite TODOS los orígenes (incluyendo file://)
+    credentials: true
+}));
 app.use(express.json());
+app.use(express.static('frontend')); // Servir archivos estáticos del frontend
 
 // 3. Rutas
 // app.use('/api/users', require('./routes/userRoutes'));

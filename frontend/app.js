@@ -8,7 +8,7 @@ const fetchTasks = async () => {
     try {
         const response = await fetch(API_URL);
         if (!response.ok) throw new Error('Error al conectar con la API');
-        
+
         const tasks = await response.json();
         renderTasks(tasks);
     } catch (error) {
@@ -29,25 +29,25 @@ const renderTasks = (tasks) => {
     tasks.forEach(task => {
         // Creamos el elemento article
         const card = document.createElement('article');
-        card.className = `task-card status-${task.estado}`; // Clase dinámica según estado
-        
+        card.className = `task-card status-${task.estado}`;
+
         // Formatear fecha
         const fecha = new Date(task.fecha).toLocaleDateString();
 
         card.innerHTML = `
             <div class="task-header">
                 <h3>${task.titulo}</h3>
-                <span class="badge ${task.estado}">${task.estado}</span>
+                <span class="badge  ${task.estado}">Estado :${task.estado}</span>
             </div>
-            <p class="tech-tag">💻 ${task.tecnologia || 'General'}</p>
-            <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">📅 ${fecha}</p>
+            <p class="tech-tag">Tecnología: ${task.tecnologia || 'General'}</p>
+            <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">Fecha: ${fecha}</p>
             
             <div class="card-actions">
                 <button class="btn-toggle" onclick="toggleTask('${task._id}', '${task.estado}')">
-                    ${task.estado === 'pending' ? '✅ Completar' : '↩️ Pendiente'}
+                    ${task.estado === 'pending' ? 'Completar' : 'Pendiente'}
                 </button>
                 <button class="btn-delete" onclick="deleteTask('${task._id}')">
-                    🗑️ Borrar
+                    Borrar
                 </button>
             </div>
         `;
@@ -64,7 +64,7 @@ taskForm.addEventListener('submit', async (e) => {
     const nuevaTarea = {
         titulo: document.getElementById('titulo').value,
         tecnologia: document.getElementById('tecnologia').value,
-        
+
     };
 
     try {
