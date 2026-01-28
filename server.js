@@ -11,7 +11,9 @@ app.use(express.json());
 
 // 3. Rutas
 // app.use('/api/users', require('./routes/userRoutes'));
-app.use('/api/productos', require('./routes/productoRoutes'));
+
+app.use('/api/tareas', require('./routes/tareaRoutes'));
+
 app.get('/', (req, res) => {
     res.send('¡API funcionando sin dotenv! 🚀');
 });

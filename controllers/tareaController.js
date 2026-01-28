@@ -1,9 +1,9 @@
 
-const productoService = require('../services/productoService');
+const tareaService = require('../services/tareaService');
 
 exports.getAll = async (req, res) => {
     try {
-        const items = await productoService.getAll();
+        const items = await tareaService.getAll();
         res.json(items);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -12,7 +12,7 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
     try {
-        const item = await productoService.getById(req.params.id);
+        const item = await tareaService.getById(req.params.id);
         if (!item) return res.status(404).json({ error: 'Not found' });
         res.json(item);
     } catch (err) {
@@ -22,7 +22,7 @@ exports.getById = async (req, res) => {
 
 exports.create = async (req, res) => {
     try {
-        const newItem = await productoService.create(req.body);
+        const newItem = await tareaService.create(req.body);
         res.status(201).json(newItem);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -31,7 +31,7 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const updatedItem = await productoService.update(req.params.id, req.body);
+        const updatedItem = await tareaService.update(req.params.id, req.body);
         if (!updatedItem) return res.status(404).json({ error: 'Not found' });
         res.json(updatedItem);
     } catch (err) {
@@ -41,7 +41,7 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const deletedItem = await productoService.delete(req.params.id);
+        const deletedItem = await tareaService.delete(req.params.id);
         if (!deletedItem) return res.status(404).json({ error: 'Not found' });
         res.json({ message: 'Deleted successfully' });
     } catch (err) {
