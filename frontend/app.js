@@ -2,7 +2,7 @@ const API_URL = 'http://localhost:3000/api/tareas';
 const taskForm = document.getElementById('taskForm');
 const tasksContainer = document.getElementById('tasksContainer');
 
-//LECTURA (GET) ---
+//GET
 //obtener tareas
 const fetchTasks = async () => {
     try {
@@ -19,7 +19,7 @@ const fetchTasks = async () => {
 
 //PINTADO
 const renderTasks = (tasks) => {
-    tasksContainer.innerHTML = ''; // Limpiamos el contenedor
+    tasksContainer.innerHTML = '';
 
     if (tasks.length === 0) {
         tasksContainer.innerHTML = '<p>No hay tareas pendientes. ¡Añade una!</p>';
@@ -27,11 +27,11 @@ const renderTasks = (tasks) => {
     }
 
     tasks.forEach(task => {
-        // Creamos el elemento article
+        
         const card = document.createElement('article');
         card.className = `task-card status-${task.estado}`;
 
-        // Formatear fecha
+        
         const fecha = new Date(task.fecha).toLocaleDateString();
 
         card.innerHTML = `
@@ -56,11 +56,11 @@ const renderTasks = (tasks) => {
     });
 };
 
-//CREACIÓN (POST)
+//POST
 taskForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Evitamos que la página se recargue
+    e.preventDefault();
 
-    // Recogemos datos
+    // Formulario
     const nuevaTarea = {
         titulo: document.getElementById('titulo').value,
         tecnologia: document.getElementById('tecnologia').value,
@@ -75,8 +75,8 @@ taskForm.addEventListener('submit', async (e) => {
         });
 
         if (response.ok) {
-            taskForm.reset(); // Limpiar formulario
-            fetchTasks(); // Recargar lista
+            taskForm.reset();
+            fetchTasks();
         } else {
             alert('Error al guardar la tarea');
         }
@@ -85,7 +85,7 @@ taskForm.addEventListener('submit', async (e) => {
     }
 });
 
-//ACTUALIZACIÓN (PUT)
+//PUT
 window.toggleTask = async (id, currentStatus) => {
     const newStatus = currentStatus === 'pending' ? 'done' : 'pending';
 
@@ -104,7 +104,7 @@ window.toggleTask = async (id, currentStatus) => {
     }
 };
 
-//ELIMINACIÓN (DELETE)
+//DELETE
 window.deleteTask = async (id) => {
     if (!confirm('¿Estás seguro de querer borrar esta tarea?')) return;
 
@@ -120,6 +120,5 @@ window.deleteTask = async (id) => {
         console.error('Error borrando:', error);
     }
 };
-
-// Inicializar
+//Inicializar
 document.addEventListener('DOMContentLoaded', fetchTasks);
